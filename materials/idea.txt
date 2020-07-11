@@ -1,0 +1,63 @@
+Godot Wild Jam 23 X Weekly Game Jam 157
+
+[GWJ 23]
+Theme: Tiny World
+
+Wildcards:
+- Wherefore Art Thou?: Let the player name the protagonist!
+- Dig it!: Feature destructible terrain in your game!
+- Seamless: Make your title screen be a part of the game itself!
+
+[WGJ 157]
+Theme: Vulnerable Invincible
+
+=====
+
+[Brainstorming]
+
+The game sets in "Tiny World", but what do you mean "Vulnerable
+Invincible"?
+
+Set in a small house.
+
+You have an invincible mechanic, and it comes with a heavy price.
+
+You left your wallet in your bedroom upstairs, and you need to do so
+within a certain time period.
+
+Invincibility only drains your special points, and cannot retrieve it
+back.
+
+Invincibility only drains your loved one's health.
+
+Invincibility only drains your money in the wallet.
+
+Top-down shooter - one hit and you are dead.
+
+Survival horror game - but to get the happy ending, you have to turn
+off the invincible mode.
+
+Emotionally vulnerable?
+
+Think of Pathologic games.
+
+Set in one location only?
+
+What does 23 means?
+
+What's the player character's goal?
+
+=====
+
+[Title]
+- Haunted
+- Twenty Three
+-- 23 Skidoo
+
+=====
+
+[Links]
+- Lovecraftian Supernatural Horror Art by David Lewis Johnson [Silent
+  Legions] -> shorturl.at/tHST5
+- Lovecraftian Supernatural Horror Art by Luigi Castellani [Silent
+  Legions] -> shorturl.at/bgzAI
