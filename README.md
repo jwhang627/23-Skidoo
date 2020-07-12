@@ -5,4 +5,4 @@
 
 ## Godot Wild Jam 23
 ### Theme
-![GWJ23 Theme](/blob/master/README/Theme.png)
+![GWJ23 Theme](/README/Theme.png)
