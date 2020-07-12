@@ -4,5 +4,8 @@
 23 and Weekly Game Jam 157.
 
 ## Godot Wild Jam 23
+![Godot Wild Jam](README/GWJ_logo.png)
 ### Theme
 ![GWJ23 Theme](/README/Theme.png)
+### Wild Cards
+![GWJ23 Wild Cards](/README/Wildcards.png)
