@@ -9,3 +9,7 @@
 ![GWJ23 Theme](/README/Theme.png)
 ### Wild Cards
 ![GWJ23 Wild Cards](/README/Wildcards.png)
+## Weekly Game Jam 157
+![Weekly Game Jam](README/WeeklyGameJam.gif)
+### WGJ Theme
+![Weekly Game Jam Theme](README/WGJ_theme.png)
