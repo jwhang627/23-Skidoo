@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://images/game-brick_wall-800x600.jpg" type="Texture" id=1]
 [ext_resource path="res://scenes/title.tscn" type="PackedScene" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://scenes/time_font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scripts/game.gd" type="Script" id=5]
 [ext_resource path="res://images/brick_wall-600x600.jpg" type="Texture" id=6]
+[ext_resource path="res://scenes/game_default_font.tres" type="DynamicFont" id=7]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 48
 font_data = ExtResource( 3 )
 
@@ -58,7 +59,7 @@ valign = 1
 margin_top = 75.0
 margin_right = 150.0
 margin_bottom = 130.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
 text = "19:10"
 align = 1
@@ -92,21 +93,24 @@ __meta__ = {
 
 [node name="chara_name" type="Label" parent="char_info/order"]
 margin_right = 142.0
-margin_bottom = 14.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "name: John"
 
 [node name="physical_health" type="Label" parent="char_info/order"]
-margin_top = 18.0
+margin_top = 22.0
 margin_right = 142.0
-margin_bottom = 32.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "physical: 000"
 
 [node name="mind_health" type="Label" parent="char_info/order"]
-margin_top = 36.0
+margin_top = 44.0
 margin_right = 142.0
-margin_bottom = 50.0
+margin_bottom = 62.0
+custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "mind: 000"
 
@@ -127,13 +131,14 @@ __meta__ = {
 
 [node name="label" type="Label" parent="char_info/goal/order"]
 margin_right = 142.0
-margin_bottom = 14.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 7 )
 text = "goal:"
 
 [node name="description" type="Label" parent="char_info/goal/order"]
-margin_top = 18.0
+margin_top = 22.0
 margin_right = 142.0
-margin_bottom = 32.0
+margin_bottom = 36.0
 
 [node name="texts" type="Control" parent="."]
 margin_left = 174.0
@@ -159,6 +164,7 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = 274.0
 margin_bottom = 136.0
+custom_fonts/normal_font = ExtResource( 7 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 text = "this is the history of previous texts."
 __meta__ = {
@@ -180,6 +186,7 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = 274.0
 margin_bottom = 160.0
+custom_fonts/normal_font = ExtResource( 7 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 text = "this is the description of a scene."
 __meta__ = {
@@ -203,22 +210,26 @@ margin_bottom = 144.0
 
 [node name="option1" type="Button" parent="buttons/order"]
 margin_right = 602.0
-margin_bottom = 20.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 7 )
 
 [node name="option2" type="Button" parent="buttons/order"]
-margin_top = 24.0
+margin_top = 28.0
 margin_right = 602.0
-margin_bottom = 44.0
+margin_bottom = 52.0
+custom_fonts/font = ExtResource( 7 )
 
 [node name="option3" type="Button" parent="buttons/order"]
-margin_top = 48.0
+margin_top = 56.0
 margin_right = 602.0
-margin_bottom = 68.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 7 )
 
 [node name="option4" type="Button" parent="buttons/order"]
-margin_top = 72.0
+margin_top = 84.0
 margin_right = 602.0
-margin_bottom = 92.0
+margin_bottom = 108.0
+custom_fonts/font = ExtResource( 7 )
 
 [node name="picture" type="TextureRect" parent="."]
 margin_left = 464.0
