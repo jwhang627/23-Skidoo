@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/Captain Redemption.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 96
+font_data = ExtResource( 1 )
+
+[node name="title" type="Label"]
+margin_right = 800.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
+text = "23 Skidoo"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

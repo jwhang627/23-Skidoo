@@ -1,200 +1,234 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://fonts/TheEndFont(RF).ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://fonts/Captain Redemption.ttf" type="DynamicFontData" id=2]
-
-[sub_resource type="DynamicFont" id=1]
-size = 64
-font_data = ExtResource( 1 )
+[ext_resource path="res://images/game-brick_wall-800x600.jpg" type="Texture" id=1]
+[ext_resource path="res://scenes/title.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fonts/Fiddums Family.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scenes/time_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scripts/game.gd" type="Script" id=5]
+[ext_resource path="res://images/brick_wall-600x600.jpg" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=2]
-size = 36
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 32
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 36
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 36
-font_data = ExtResource( 1 )
+size = 48
+font_data = ExtResource( 3 )
 
 [node name="game" type="Node"]
+script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": "main game"
 }
 
-[node name="color_bg" type="ColorRect" parent="."]
+[node name="background" type="TextureRect" parent="."]
 margin_right = 800.0
 margin_bottom = 600.0
-color = Color( 0.227451, 0.643137, 0.478431, 1 )
+texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="layout" type="Control" parent="."]
-margin_right = 800.0
-margin_bottom = 600.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="title" parent="." instance=ExtResource( 2 )]
 
-[node name="title" type="Label" parent="layout"]
-margin_right = 800.0
-margin_bottom = 73.0
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.803922, 0.258824, 0.313726, 1 )
-text = "23 Skidoo"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="stuffs" type="VBoxContainer" parent="layout"]
-margin_top = 73.0
-margin_right = 800.0
-margin_bottom = 600.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="middle" type="HBoxContainer" parent="layout/stuffs"]
-margin_right = 800.0
-margin_bottom = 77.0
-size_flags_horizontal = 3
-size_flags_vertical = 2
-custom_constants/separation = 24
-alignment = 1
-
-[node name="time" type="VBoxContainer" parent="layout/stuffs/middle"]
-margin_left = 205.0
-margin_right = 285.0
-margin_bottom = 77.0
-alignment = 1
-
-[node name="text" type="Label" parent="layout/stuffs/middle/time"]
-margin_right = 80.0
-margin_bottom = 41.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.803922, 0.258824, 0.313726, 1 )
-text = "Time"
-align = 1
-valign = 1
-
-[node name="time" type="Label" parent="layout/stuffs/middle/time"]
-margin_top = 45.0
-margin_right = 80.0
-margin_bottom = 77.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
-custom_fonts/font = SubResource( 3 )
-custom_colors/font_color = Color( 0.803922, 0.258824, 0.313726, 1 )
-text = "00:00"
-align = 1
-valign = 1
-
-[node name="actions" type="VBoxContainer" parent="layout/stuffs/middle"]
-margin_left = 309.0
-margin_right = 456.0
-margin_bottom = 77.0
-alignment = 1
-
-[node name="text" type="Label" parent="layout/stuffs/middle/actions"]
-margin_right = 147.0
-margin_bottom = 41.0
-custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0.803922, 0.258824, 0.313726, 1 )
-text = "Actions"
-align = 1
-valign = 1
-
-[node name="box" type="ColorRect" parent="layout/stuffs/middle/actions"]
-margin_top = 45.0
-margin_right = 147.0
-margin_bottom = 77.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color( 0.627451, 0.890196, 0.721569, 1 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="layout/stuffs/middle/actions/box"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Button" parent="layout/stuffs/middle/actions/box/VBoxContainer"]
-margin_right = 40.0
-margin_bottom = 20.0
-size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button2" type="Button" parent="layout/stuffs/middle/actions/box/VBoxContainer"]
-margin_top = 24.0
-margin_right = 40.0
-margin_bottom = 44.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button3" type="Button" parent="layout/stuffs/middle/actions/box/VBoxContainer"]
-margin_top = 48.0
-margin_right = 40.0
-margin_bottom = 68.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button4" type="Button" parent="layout/stuffs/middle/actions/box/VBoxContainer"]
-margin_top = 72.0
-margin_right = 40.0
-margin_bottom = 92.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="goals" type="VBoxContainer" parent="layout/stuffs/middle"]
-margin_left = 480.0
-margin_right = 594.0
-margin_bottom = 77.0
-alignment = 1
-
-[node name="text" type="Label" parent="layout/stuffs/middle/goals"]
-margin_right = 114.0
-margin_bottom = 41.0
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0.803922, 0.258824, 0.313726, 1 )
-text = "Goals"
-align = 1
-valign = 1
-
-[node name="box" type="ColorRect" parent="layout/stuffs/middle/goals"]
-margin_top = 45.0
-margin_right = 114.0
-margin_bottom = 77.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color( 0.627451, 0.890196, 0.721569, 1 )
-
-[node name="text" type="RichTextLabel" parent="layout/stuffs/middle/goals/box"]
-margin_right = 114.0
-margin_bottom = 32.0
-scroll_active = false
+[node name="time_block" type="Control" parent="."]
+margin_left = 16.0
+margin_top = 100.0
+margin_right = 166.0
+margin_bottom = 250.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="bottom" type="HBoxContainer" parent="layout/stuffs"]
-margin_top = 527.0
-margin_right = 800.0
-margin_bottom = 527.0
+[node name="order" type="VBoxContainer" parent="time_block"]
+margin_right = 150.0
+margin_bottom = 150.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="time_block/order"]
+margin_right = 150.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
+text = "time"
+align = 1
+valign = 1
+
+[node name="time" type="Label" parent="time_block/order"]
+margin_top = 75.0
+margin_right = 150.0
+margin_bottom = 130.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
+text = "19:10"
+align = 1
+valign = 1
+
+[node name="char_info" type="Control" parent="."]
+margin_left = 16.0
+margin_top = 256.0
+margin_right = 166.0
+margin_bottom = 584.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="char_info"]
+margin_right = 150.0
+margin_bottom = 328.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="order" type="VBoxContainer" parent="char_info"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 146.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chara_name" type="Label" parent="char_info/order"]
+margin_right = 142.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "name: John"
+
+[node name="physical_health" type="Label" parent="char_info/order"]
+margin_top = 18.0
+margin_right = 142.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "physical: 000"
+
+[node name="mind_health" type="Label" parent="char_info/order"]
+margin_top = 36.0
+margin_right = 142.0
+margin_bottom = 50.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "mind: 000"
+
+[node name="goal" type="Control" parent="char_info"]
+margin_left = 4.0
+margin_top = 76.0
+margin_right = 146.0
+margin_bottom = 324.0
+
+[node name="order" type="VBoxContainer" parent="char_info/goal"]
+margin_right = 142.0
+margin_bottom = 248.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label" type="Label" parent="char_info/goal/order"]
+margin_right = 142.0
+margin_bottom = 14.0
+text = "goal:"
+
+[node name="description" type="Label" parent="char_info/goal/order"]
+margin_top = 18.0
+margin_right = 142.0
+margin_bottom = 32.0
+
+[node name="texts" type="Control" parent="."]
+margin_left = 174.0
+margin_top = 100.0
+margin_right = 448.0
+margin_bottom = 420.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="history_color" type="ColorRect" parent="texts"]
+margin_right = 274.0
+margin_bottom = 140.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="history" type="RichTextLabel" parent="texts/history_color"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 274.0
+margin_bottom = 136.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+text = "this is the history of previous texts."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="description_color" type="ColorRect" parent="texts"]
+margin_top = 156.0
+margin_right = 274.0
+margin_bottom = 320.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="description" type="RichTextLabel" parent="texts/description_color"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 274.0
+margin_bottom = 160.0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+text = "this is the description of a scene."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buttons" type="Control" parent="."]
+margin_left = 174.0
+margin_top = 436.0
+margin_right = 784.0
+margin_bottom = 584.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="order" type="VBoxContainer" parent="buttons"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 606.0
+margin_bottom = 144.0
+
+[node name="option1" type="Button" parent="buttons/order"]
+margin_right = 602.0
+margin_bottom = 20.0
+
+[node name="option2" type="Button" parent="buttons/order"]
+margin_top = 24.0
+margin_right = 602.0
+margin_bottom = 44.0
+
+[node name="option3" type="Button" parent="buttons/order"]
+margin_top = 48.0
+margin_right = 602.0
+margin_bottom = 68.0
+
+[node name="option4" type="Button" parent="buttons/order"]
+margin_top = 72.0
+margin_right = 602.0
+margin_bottom = 92.0
+
+[node name="picture" type="TextureRect" parent="."]
+margin_left = 464.0
+margin_top = 100.0
+margin_right = 784.0
+margin_bottom = 420.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

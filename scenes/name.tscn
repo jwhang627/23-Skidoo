@@ -1,0 +1,121 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scripts/name.gd" type="Script" id=1]
+[ext_resource path="res://images/game-brick_wall-800x600.jpg" type="Texture" id=2]
+[ext_resource path="res://fonts/TheEndFont(RF).ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scenes/title.tscn" type="PackedScene" id=4]
+[ext_resource path="res://fonts/Kristi.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://images/small_house.png" type="Texture" id=6]
+[ext_resource path="res://fonts/Courier Prime.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 48
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+font_data = ExtResource( 3 )
+
+[node name="name" type="Node"]
+script = ExtResource( 1 )
+name_limit = 14
+
+[node name="background" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" parent="." instance=ExtResource( 4 )]
+
+[node name="image" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -200.0
+margin_top = 100.0
+margin_right = 200.0
+margin_bottom = 400.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="naming" type="Control" parent="."]
+margin_top = 412.0
+margin_right = 800.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="question" type="Label" parent="naming"]
+margin_left = 16.0
+margin_right = 392.0
+margin_bottom = 81.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
+text = "What is your name?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="error" type="Label" parent="naming"]
+visible = false
+margin_left = 16.0
+margin_top = 81.0
+margin_right = 509.0
+margin_bottom = 155.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
+custom_colors/font_color_shadow = Color( 0.878431, 0.180392, 0.270588, 1 )
+text = "name required"
+align = 1
+valign = 1
+
+[node name="input" type="TextEdit" parent="naming"]
+margin_left = 408.0
+margin_top = 31.0
+margin_right = 784.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/member_variable_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
+custom_colors/background_color = Color( 0.0823529, 0.0156863, 0.0156863, 0 )
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+wrap_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="confirm" type="Button" parent="naming"]
+margin_left = 565.0
+margin_top = 94.0
+margin_right = 787.0
+margin_bottom = 155.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
+custom_colors/font_color_hover = Color( 0.878431, 0.180392, 0.270588, 1 )
+custom_colors/font_color_pressed = Color( 0.878431, 0.180392, 0.270588, 1 )
+text = "confirm"
+flat = true
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+[connection signal="text_changed" from="naming/input" to="." method="_on_input_text_changed"]
+[connection signal="pressed" from="naming/confirm" to="." method="_on_confirm_pressed"]
