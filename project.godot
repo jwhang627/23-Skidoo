@@ -25,6 +25,7 @@ config/windows_native_icon="res://images/23_logo.ico"
 
 Global="*res://scripts/global.gd"
 Dialogues="*res://scripts/lines/dialogues.gd"
+CorrectOrder="*res://scripts/correct_order.gd"
 
 [debug]
 

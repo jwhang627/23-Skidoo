@@ -35,6 +35,8 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": "main game"
 }
+mental_drop = 1
+demon_spawn = 46
 
 [node name="non_interactive" type="Control" parent="."]
 margin_right = 800.0

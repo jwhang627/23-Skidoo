@@ -1,10 +1,10 @@
 extends Node
 
 var p_scrpt = [
-	{"line":"Your grandmother defined the phrase 23 Skidoo like this:","image":"res://images/brick_wall-600x600.jpg"},
-	{"line":"\"When in doubt, get the hell out of here now.\"","image":"res://images/brick_wall-600x600.jpg"},
-	{"line":"You should have considered her words on your 10th birthday.","image":"res://images/brick_wall-600x600.jpg"},
-	{"line":"You remember on that night of your 10th birthday.","image":"res://images/brick_wall-600x600.jpg"},
+	{"line":"Your grandmother defined the phrase 23 Skidoo like this:","image":"res://images/23_logo.png"},
+	{"line":"\"When in doubt, get the hell out of here now.\"","image":"res://images/23_logo.png"},
+	{"line":"You should have considered her words on your 10th birthday.","image":"res://images/23_logo.png"},
+	{"line":"You remember on that night of your 10th birthday.","image":"res://images/small_house.png"},
 	{"line":"You discovered this tiny window-less building.","image":"res://images/small_house.png"},
 	{"line":"You can see it from second floor, but back then you didn't realize its existence.","image":"res://images/small_house.png"},
 	{"line":"You called this tiny building The Place.","image":"res://images/small_house.png"},
@@ -61,7 +61,7 @@ var game_map = {
 		"type":"choice",
 		"location":"center",
 		"picture":"res://images/black_square.png",
-		"line":"You are in the middle of the Place. What do you do?",
+		"line":"You better bring a pen and paper on this one. You are trapped in the middle of the Place. You remember what your grandmother told you about this kind of scenario, and need to do in an order of specific actions. Then you forgot about that order. You need to rely on trials and errors. But don't worry - you have a plenty of time. What do you do?",
 		"option1":{
 			"text":"Approach the LEFT wall.",
 			"value":"init_left"
@@ -78,42 +78,285 @@ var game_map = {
 	"init_left":{
 		"type":"choice",
 		"location":"left",
-		"picture":"res://images/black_square.png",
-		"line":"You are in the middle of the Place. What do you do?",
+		"picture":"res://images/symbols/LEFT_wall_symbol.jpg",
+		"line":"You see a LEFT wall with an unusual symbol. What do you do with this?",
 		"option1":{
-			"text":"Approach the LEFT wall.",
-			"value":"init_left"
+			"text":"Put your hand on it.",
+			"value":"touch_left"
 		},
 		"option2":{
-			"text":"Approach the FRONT wall.",
-			"value":"init_front"
+			"text":"Try breaking it with hammer.",
+			"value":"break_left"
 		},
 		"option3":{
-			"text":"Approach the RIGHT wall.",
-			"value":"init_right"
+			"text":"Go back to the center.",
+			"value":"normal_center"
 		}
+	},
+	"touch_left":{
+		"type":"choice",
+		"location":"left",
+		"picture":"res://images/symbols/LEFT_wall_symbol.jpg",
+		"line":"You remember your grandmother's instruction to recite a certain ancient verse. They are in different languages. Which one would you cite?",
+		"option1":{
+			"text":"Germanic verse.",
+			"value":"germanic_left_result"
+		},
+		"option2":{
+			"text":"Frankish verse.",
+			"value":"frankish_left_result"
+		},
+		"option3":{
+			"text":"Forget it. Return to center.",
+			"value":"normal_center"
+		}
+	},
+	"germanic_left_result":{
+		"type":"result",
+		"location":"left",
+		"picture":"res://images/symbols/LEFT_wall_symbol.jpg",
+		"line":"You hear the rumbling sound outside. You might have done something right.",
+		"option1":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option2":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option3":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"result":"germanic-left"
+	},
+	"frankish_left_result":{
+		"type":"result",
+		"location":"left",
+		"picture":"res://images/symbols/LEFT_wall_symbol.jpg",
+		"line":"You hear the rumbling sound outside. You might have done something right.",
+		"option1":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option2":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option3":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"result":"frankish-left"
+	},
+	"break_left":{
+		"type":"result",
+		"location":"left",
+		"picture":"res://images/symbols/LEFT_wall_symbol.jpg",
+		"line":"You break the LEFT wall. You hear the rumbling sound outside. You might have done something right.",
+		"option1":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option2":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option3":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"result":"break-left"
 	},
 	"init_front":{
 		"type":"choice",
 		"location":"front",
-		"picture":"res://images/black_square.png",
-		"line":"You are in the middle of the Place. What do you do?",
+		"picture":"res://images/symbols/FRONT_wall_symbol.jpg",
+		"line":"You see a FRONT wall with an unusual symbol. What do you do with this?",
 		"option1":{
-			"text":"Approach the LEFT wall.",
-			"value":"init_left"
+			"text":"Put your hand on it.",
+			"value":"touch_front"
 		},
 		"option2":{
-			"text":"Approach the FRONT wall.",
-			"value":"init_front"
+			"text":"Try breaking it with hammer.",
+			"value":"break_front"
 		},
 		"option3":{
-			"text":"Approach the RIGHT wall.",
-			"value":"init_right"
+			"text":"Go back to the center.",
+			"value":"normal_center"
 		}
+	},
+	"touch_front":{
+		"type":"choice",
+		"location":"front",
+		"picture":"res://images/symbols/FRONT_wall_symbol.jpg",
+		"line":"You remember your grandmother's instruction to recite a certain ancient verse. They are in different languages. Which one would you cite?",
+		"option1":{
+			"text":"Germanic verse.",
+			"value":"germanic_front_result"
+		},
+		"option2":{
+			"text":"Frankish verse.",
+			"value":"frankish_front_result"
+		},
+		"option3":{
+			"text":"Forget it. Return to center.",
+			"value":"normal_center"
+		}
+	},
+	"germanic_front_result":{
+		"type":"result",
+		"location":"front",
+		"picture":"res://images/symbols/FRONT_wall_symbol.jpg",
+		"line":"You hear the rumbling sound outside. You might have done something right.",
+		"option1":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option2":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option3":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"result":"germanic-front"
+	},
+	"frankish_front_result":{
+		"type":"result",
+		"location":"front",
+		"picture":"res://images/symbols/FRONT_wall_symbol.jpg",
+		"line":"You hear the rumbling sound outside. You might have done something right.",
+		"option1":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option2":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option3":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"result":"frankish-front"
+	},
+	"break_front":{
+		"type":"result",
+		"location":"front",
+		"picture":"res://images/symbols/FRONT_wall_symbol.jpg",
+		"line":"You break the FRONT wall. You hear the rumbling sound outside. You might have done something right.",
+		"option1":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option2":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option3":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"result":"break-front"
 	},
 	"init_right":{
 		"type":"choice",
 		"location":"right",
+		"picture":"res://images/symbols/RIGHT_wall_symbol.jpg",
+		"line":"You see a RIGHT wall with an unusual symbol. What do you do with this?",
+		"option1":{
+			"text":"Put your hand on it.",
+			"value":"touch_right"
+		},
+		"option2":{
+			"text":"Try breaking it with hammer.",
+			"value":"break_right"
+		},
+		"option3":{
+			"text":"Go back to the center.",
+			"value":"normal_center"
+		}
+	},
+	"touch_right":{
+		"type":"choice",
+		"location":"right",
+		"picture":"res://images/symbols/RIGHT_wall_symbol.jpg",
+		"line":"You remember your grandmother's instruction to recite a certain ancient verse. They are in different languages. Which one would you cite?",
+		"option1":{
+			"text":"Germanic verse.",
+			"value":"germanic_right_result"
+		},
+		"option2":{
+			"text":"Frankish verse.",
+			"value":"frankish_right_result"
+		},
+		"option3":{
+			"text":"Forget it. Return to center.",
+			"value":"normal_center"
+		}
+	},
+	"germanic_right_result":{
+		"type":"result",
+		"location":"right",
+		"picture":"res://images/symbols/RIGHT_wall_symbol.jpg",
+		"line":"You hear the rumbling sound outside. You might have done something right.",
+		"option1":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option2":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option3":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"result":"germanic-right"
+	},
+	"frankish_right_result":{
+		"type":"result",
+		"location":"right",
+		"picture":"res://images/symbols/RIGHT_wall_symbol.jpg",
+		"line":"You hear the rumbling sound outside. You might have done something right.",
+		"option1":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option2":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option3":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"result":"frankish-right"
+	},
+	"break_right":{
+		"type":"result",
+		"location":"right",
+		"picture":"res://images/symbols/RIGHT_wall_symbol.jpg",
+		"line":"You break the RIGHT wall. You hear the rumbling sound outside. You might have done something right.",
+		"option1":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option2":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"option3":{
+			"text":"Return to the center.",
+			"value":"normal_center"
+		},
+		"result":"break-right"
+	},
+	"normal_center":{
+		"type":"choice",
+		"location":"center",
 		"picture":"res://images/black_square.png",
 		"line":"You are in the middle of the Place. What do you do?",
 		"option1":{
