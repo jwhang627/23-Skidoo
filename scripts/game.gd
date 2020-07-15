@@ -22,6 +22,11 @@ enum LOCATION{
 	RIGHT
 }
 
+enum BATTLE_TURN{
+	YOU,
+	DEMON
+}
+
 export var minute = 1
 export var mental_drop = 5
 export var demon_spawn = 50
@@ -32,6 +37,8 @@ var mental = 0
 var invinci = "on"
 var minutes = 0
 var used_invinci = false
+var demon_strength_attack = 0
+var demon_strength_health = 0
 
 """
 theoretically
@@ -100,18 +107,20 @@ func _input(event):
 				process_state(state)
 				game_mode = MODE.GAME
 				add_goal("GET OUT OF HERE.")
-				#$interactive/buttons/order/option4.text = "Toggle invincibility"
 				button_list.get_node("option4").text = "Toggle invincibility"
-				#set_state(game_map["init_center"])
-				#print("start the game")
 	pass
 
 func _process(delta):
 	if delta:
 		if mental < 0:
 			mental = 0
-		if demon_spawn < 23:
+		if demon_spawn >= 23:
 			demon_spawn = 23
+		if demon_strength_attack >= 23:
+			demon_strength_attack = 23
+		if demon_strength_health >= 23:
+			demon_strength_health = 23
+		
 		cur_time.text = time_format(minutes)
 		char_info.get_node("physical_health").text = "phsyical: " + str(physical)
 		char_info.get_node("mind_health").text = "mind: " + str(mental)
@@ -178,9 +187,14 @@ func display_state(dis_state):
 	set_location(dis_state["location"])
 	#des_text.clear()
 	
+	if minutes >= Global.finished_time:
+		print("ENDING - ASSIMILATION")
+	
 	if location == LOCATION.CENTER:
-		var demon_chance = floor(rand_range(0,demon_spawn))
-		print(demon_chance)
+		var demon_chance = 23
+		if minutes > Global.default_minutes:
+			demon_chance = floor(rand_range(0,demon_spawn))
+		print(demon_chance) # debugging purpose
 		if order.size() == 1:
 			des_text.text += "By the way, did you know that you can come back to the same wall, and it again?"
 			add_goal("Do the remaining two.")
@@ -189,9 +203,14 @@ func display_state(dis_state):
 			add_goal("Do the rest.")
 		
 		if demon_chance == 0:
-			#game_mode = MODE.BATTLE
-			des_text.text += "The demon appears in the middle of the Place."
+			# This will be turn-based battle
+			
+			game_mode = MODE.BATTLE
+			#des_text.text = "The demon appears in the middle of the Place."
 			print("spwan demon")
+			des_text.text += "Oh no! A wild demon appears!"
+			battle_stage(true,true)
+			
 		else:
 			if order.size() >= 3:
 				if order.size() == 4:
@@ -207,16 +226,25 @@ func display_state(dis_state):
 					add_goal("Figure out the correct sequence.")
 					order.clear()
 				else:
-					print("ENDING!")
-	
-	if dis_state["type"] == "result":
-		order.append(dis_state["result"])
-	toggle_buttons(false)
-	des_text.text = dis_state["line"]
-	button_list.get_node("option1").text = dis_state["option1"]["text"]
-	button_list.get_node("option2").text = dis_state["option2"]["text"]
-	button_list.get_node("option3").text = dis_state["option3"]["text"]
-	#add_history(des_text.text)
+					if used_invinci:
+						print("ENDING - ABOVE HUMAN")
+					else:
+						print("ENDING - FULL EXIT")
+						
+			if dis_state["type"] == "result":
+				order.append(dis_state["result"])
+			toggle_buttons(false)
+			des_text.text += dis_state["line"]
+			button_list.get_node("option1").text = dis_state["option1"]["text"]
+			button_list.get_node("option2").text = dis_state["option2"]["text"]
+			button_list.get_node("option3").text = dis_state["option3"]["text"]
+			#add_history(des_text.text)
+	else:
+		toggle_buttons(false)
+		des_text.text += dis_state["line"]
+		button_list.get_node("option1").text = dis_state["option1"]["text"]
+		button_list.get_node("option2").text = dis_state["option2"]["text"]
+		button_list.get_node("option3").text = dis_state["option3"]["text"]
 	pass
 
 func set_state(new_state):
@@ -241,23 +269,67 @@ func toggle_buttons(swi: bool):
 
 	pass
 
+func battle_stage(swi,player_status):
+	if swi:
+		if player_status:
+			add_history(des_text.text)
+			var demon_hth = floor(rand_range(0,demon_strength_health))
+			var demon_img = floor(rand_range(0,6))
+			var demon_attk = floor(rand_range(0,demon_strength_attack))
+			$demon.spawn(demon_hth,demon_img,demon_attk)
+			$animation.play("battle_mode")
+			toggle_buttons(true)
+	else:
+		des_text.text = "You finished the fight."
+		add_history(des_text.text)
+		$animation.play_backwards("battle_mode")
+		
+		if minutes >= Global.finished_time:
+			print("ENDING - 2300")
+		else:
+			if player_status == false:
+				print("DEAD MEAT.")
+			else:
+				des_text.text += "You win the battle between demon!"
+				$demon.reset()
+				game_mode = MODE.GAME
+				process_state(state)
+	pass
+
+# warning-ignore:unused_argument
+func choosing_ending(choice):
+	"""
+	1. ASSIMILATION
+	2. ABOVE HUMAN
+	3. 2300
+	4. DEAD MEAT
+	5. FULL EXIT
+	"""
+	pass
+
 # Buttons #
 ## OPTION 1
 func _on_option1_pressed():
-	process_state(dialogue[state["option1"]["value"]])
-	minutes += minute
-	if invinci == "on":
-		demon_spawn -= 1
-		mental -= mental_drop
+	if game_mode == MODE.GAME:
+		process_state(dialogue[state["option1"]["value"]])
+		minutes += minute
+		if invinci == "on":
+			demon_spawn -= 1
+			mental -= mental_drop
+			demon_strength_attack += 1
+			demon_strength_health += 1
 	
 	pass # Replace with function body.
 ## OPTION 2
 func _on_option2_pressed():
-	process_state(dialogue[state["option2"]["value"]])
-	minutes += minute
-	if invinci == "on":
-		demon_spawn -= 1
-		mental -= mental_drop
+	if game_mode == MODE.GAME:
+		process_state(dialogue[state["option2"]["value"]])
+		minutes += minute
+		if invinci == "on":
+			demon_spawn -= 1
+			mental -= mental_drop
+			demon_strength_attack += 1
+			demon_strength_health += 1
 	
 	pass # Replace with function body.
 ## OPTION 3
@@ -267,6 +339,8 @@ func _on_option3_pressed():
 	if invinci == "on":
 		demon_spawn -= 1
 		mental -= mental_drop
+		demon_strength_attack += 1
+		demon_strength_health += 1
 	
 	pass # Replace with function body.
 ## OPTION 4 (INVINCIBLE)

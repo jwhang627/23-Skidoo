@@ -373,3 +373,9 @@ var game_map = {
 		}
 	}
 }
+
+var assimilation = []
+var aboveHuman = []
+var twentyThreeHundred = []
+var deadMeat = []
+var fullExit = []

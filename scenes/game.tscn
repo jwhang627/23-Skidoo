@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://images/game-brick_wall-800x600.jpg" type="Texture" id=1]
 [ext_resource path="res://scenes/title.tscn" type="PackedScene" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://fonts/TerminusTTF-Bold-4.47.0.ttf" type="DynamicFontData" id=11]
 [ext_resource path="res://fonts/TerminusTTF-Italic-4.47.0.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://fonts/TerminusTTF-Bold Italic-4.47.0.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://scripts/demon.gd" type="Script" id=14]
+[ext_resource path="res://images/demon_0.png" type="Texture" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -29,6 +31,70 @@ font_data = ExtResource( 11 )
 
 [sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 10 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "attack_demon"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("demon/battle_screen/image:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "attack_player"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("demon/battle_screen/background:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.901961, 0.901961, 0.901961, 0.0901961 ), Color( 0.901961, 0, 0, 0.0901961 ), Color( 0.901961, 0.901961, 0.901961, 0.0901961 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "battle_mode"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("demon/battle_screen:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.176777, 0.225312 ),
+"update": 0,
+"values": [ Vector2( 0, -600 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "invincibility_defense"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("demon/battle_screen/background:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.901961, 0.901961, 0.901961, 0.0901961 ), Color( 0.901961, 0, 0.901961, 0.0901961 ), Color( 0.901961, 0.901961, 0.901961, 0.0901961 ) ]
+}
 
 [node name="game" type="Node"]
 script = ExtResource( 5 )
@@ -169,7 +235,7 @@ text = "invinci: off"
 
 [node name="goal" type="Control" parent="non_interactive/char_info"]
 margin_left = 4.0
-margin_top = 88.0
+margin_top = 106.0
 margin_right = 146.0
 margin_bottom = 324.0
 __meta__ = {
@@ -297,10 +363,80 @@ margin_bottom = 104.0
 custom_fonts/font = ExtResource( 9 )
 disabled = true
 
-[node name="demon_battle" type="Node" parent="."]
+[node name="demon" type="Node" parent="."]
+script = ExtResource( 14 )
+
+[node name="battle_screen" type="Control" parent="demon"]
+margin_top = -600.0
+margin_right = 800.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="ColorRect" parent="demon/battle_screen"]
+margin_right = 800.0
+margin_bottom = 600.0
+color = Color( 0.901961, 0.901961, 0.901961, 0.0901961 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="image" type="TextureRect" parent="demon/battle_screen"]
+margin_left = 200.0
+margin_top = 20.0
+margin_right = 600.0
+margin_bottom = 420.0
+texture = ExtResource( 15 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buttons" type="Control" parent="demon/battle_screen"]
+margin_left = 200.0
+margin_top = 440.0
+margin_right = 600.0
+margin_bottom = 600.0
+
+[node name="order" type="VBoxContainer" parent="demon/battle_screen/buttons"]
+margin_right = 400.0
+margin_bottom = 160.0
+
+[node name="attack" type="Button" parent="demon/battle_screen/buttons/order"]
+margin_right = 400.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 9 )
+disabled = true
+text = "Attack with a hammer."
+
+[node name="defend" type="Button" parent="demon/battle_screen/buttons/order"]
+margin_top = 27.0
+margin_right = 400.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 9 )
+disabled = true
+text = "Defend with an amulet."
+
+[node name="invincible" type="Button" parent="demon/battle_screen/buttons/order"]
+margin_top = 54.0
+margin_right = 400.0
+margin_bottom = 77.0
+custom_fonts/font = ExtResource( 9 )
+disabled = true
+text = "Give yourself invincibility."
 
 [node name="music" type="AudioStreamPlayer" parent="."]
+
+[node name="animation" type="AnimationPlayer" parent="."]
+anims/attack_demon = SubResource( 7 )
+anims/attack_player = SubResource( 8 )
+anims/battle_mode = SubResource( 6 )
+anims/invincibility_defense = SubResource( 9 )
 [connection signal="pressed" from="interactive/buttons/order/option1" to="." method="_on_option1_pressed"]
 [connection signal="pressed" from="interactive/buttons/order/option2" to="." method="_on_option2_pressed"]
 [connection signal="pressed" from="interactive/buttons/order/option3" to="." method="_on_option3_pressed"]
 [connection signal="pressed" from="interactive/buttons/order/option4" to="." method="_on_option4_pressed"]
+[connection signal="pressed" from="demon/battle_screen/buttons/order/attack" to="demon" method="_on_attack_pressed"]
+[connection signal="pressed" from="demon/battle_screen/buttons/order/defend" to="demon" method="_on_defend_pressed"]
+[connection signal="pressed" from="demon/battle_screen/buttons/order/invincible" to="demon" method="_on_invincible_pressed"]
+[connection signal="animation_finished" from="animation" to="demon" method="_on_animation_finished"]
