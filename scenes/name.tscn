@@ -109,12 +109,16 @@ margin_left = 565.0
 margin_top = 94.0
 margin_right = 787.0
 margin_bottom = 155.0
+mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
 custom_colors/font_color_hover = Color( 0.878431, 0.180392, 0.270588, 1 )
 custom_colors/font_color_pressed = Color( 0.878431, 0.180392, 0.270588, 1 )
 text = "confirm"
 flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 [connection signal="text_changed" from="naming/input" to="." method="_on_input_text_changed"]

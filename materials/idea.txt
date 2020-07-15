@@ -49,6 +49,39 @@ What's the player character's goal?
 
 =====
 
+[Mechanic]
+
+Whenever you set the invincibility on, it will take much of your
+mental health, and the enemy became much stronger and hard to
+fight. When the mental health reached to zero, you lost your
+invincibility ability.
+
+Your only weapon is a sledge hammer. And your source of shield is an
+AMULET your grandmother gave to you on the following birthday you
+trapped yourself in the Place for the first time.
+
+Demon randomly appears, and you fight with them through attack or
+defense buttons.
+
+You take no physical damage when you set Invincibility mode on. But it
+can drain your mental health depending on duration. You can lessen the
+damage through your amulet.
+
+=====
+
+[Ending(s)]
+- Assimilationist: You spent all of your mental health through
+  invincibility before the time reached 2300, so you became a demon
+  and a part of another demension. You join with the demons and start
+  a new life with them.
+- Made it out alive before 2300 (Almost Human): You still retain your
+  invincibility ability, but the creatures from another dimension will
+  leave you alone from now on.
+- 2300: The clock reached 2300, and the portal to another dimension
+  is open. You trapped in the Place forever.
+
+=====
+
 [Title]
 - Haunted
 - Twenty Three

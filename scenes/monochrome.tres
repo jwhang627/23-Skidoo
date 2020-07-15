@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://shaders/monochrome.shader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/_base = Color( 1, 1, 1, 1 )
+shader_param/_red = 0.666
+shader_param/_green = 0.133
+shader_param/_blue = 0.4

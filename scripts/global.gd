@@ -4,6 +4,9 @@ var char_name
 const default_physical = 200
 const default_mind = 200
 const default_time = "19:10"
+const default_minutes = 1150
+const finished_time = 1380
+const default_invinci = "off"
 
 func _ready():
 	char_name = ""
