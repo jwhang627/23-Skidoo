@@ -225,8 +225,8 @@ func display_state(dis_state):
 		if minutes > Global.default_minutes:
 			demon_chance = floor(rand_range(0,demon_spawn))
 		#print(demon_chance) # debugging purpose
-		#if order.size() == 1:
-		des_text.text += "By the way, did you know that you can come back to the same wall, and it again? "
+		if order.size() == 1:
+			des_text.text += "By the way, did you know that you can come back to the same wall, and it again? "
 		#	add_goal("Do the remaining two.")
 		#elif order.size() == 2:
 		#	remove_goal()
