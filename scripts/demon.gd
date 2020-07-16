@@ -68,12 +68,24 @@ func reset():
 
 # Buttons #
 func _on_attack_pressed():
+	if get_parent().invinci == "on":
+		get_parent().demon_spawn -= 1
+		get_parent().demon_strength_attack -= 1
+		get_parent().demon_strength_health -= 1
+		get_parent().mental -= get_parent().mental_drop
+	
 	get_attacked(floor(rand_range(50,73)))
 	get_parent().minutes += 1
 	
 	pass # Replace with function body.
 
 func _on_defend_pressed():
+	if get_parent().invinci == "on":
+		get_parent().demon_spawn -= 1
+		get_parent().demon_strength_attack -= 1
+		get_parent().demon_strength_health -= 1
+		get_parent().mental -= get_parent().mental_drop
+	
 	defend_on = true
 	get_parent().minutes += 1
 	if get_parent().minutes >= Global.finished_time:
@@ -85,8 +97,12 @@ func _on_defend_pressed():
 func _on_invincible_pressed():
 	get_parent().minutes += 1
 	if get_parent().invinci == "on":
+		get_parent().get_node("non_interactive/monochrome").visible = false
 		get_parent().invinci = "off"
 	else:
+		get_parent().get_node("non_interactive/monochrome").visible = true
+		if get_parent().used_invinci == false:
+			get_parent().used_invinci = true
 		get_parent().invinci = "on"
 	pass # Replace with function body.
 
@@ -101,7 +117,7 @@ func _on_animation_finished(anim_name):
 			get_parent().battle_stage(false,true)
 		else:
 			demon_turn()
-	elif anim_name == "attack_player":
+	elif anim_name == "attack_player" or anim_name == "invincibility_defense":
 		if get_parent().physical <= 0:
 			get_parent().battle_stage(false,false)
 		player_turn()

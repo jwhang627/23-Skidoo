@@ -4,6 +4,8 @@ onready var c_name = $naming/input
 export var name_limit = 12
 
 func _ready():
+	CorrectOrder.make_sequence()
+	#print(CorrectOrder.order)
 	pass # Replace with function body.
 
 # warning-ignore:unused_argument
@@ -24,6 +26,7 @@ func _input(event):
 
 func _on_confirm_pressed():
 	if c_name.text.length() != 0:
+		$music.playing = false
 		Global.char_name = c_name.text.capitalize()
 		if get_tree().change_scene("res://scenes/game.tscn") != 0:
 				print("ERROR 2")

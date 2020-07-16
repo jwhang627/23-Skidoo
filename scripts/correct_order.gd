@@ -5,21 +5,21 @@ var order = []
 
 func _ready():
 	randomize()
+	
+	# SHUFFLE made this way too difficult.
+	#order.shuffle()
+	#set_process(true)
+	pass # Replace with function body.
+func make_sequence():
+	order.clear()
 	actions = {
 		"left":["germanic-left","frankish-left","break-left"],
 		"front":["germanic-front","frankish-front","break-front"],
 		"right":["germanic-right","frankish-right","break-right"]
 	}
-	
-	order.append(actions["right"][floor(rand_range(0,3))])
-	order.append(actions["left"][floor(rand_range(0,3))])
-	order.append(actions["front"][floor(rand_range(0,3))])
-	
-	# SHUFFLE made this way too difficult.
-	#order.shuffle()
-	set_process(true)
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	var arr = [0,1,2]
+	arr.shuffle()
+	order.append(actions["right"][arr[0]])
+	order.append(actions["left"][arr[1]])
+	order.append(actions["front"][arr[2]])
+	pass

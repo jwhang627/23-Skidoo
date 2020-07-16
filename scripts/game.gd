@@ -51,6 +51,8 @@ var p_pages = 0
 var p_page = 0
 var p_scrpt = Dialogues.p_scrpt
 var e_script = []
+var e_page = 0
+var e_pages = 0
 var game_map = Dialogues.game_map
 
 var state = {}
@@ -67,6 +69,7 @@ var game_mode = MODE.PROLOGUE
 
 func _ready():
 	randomize()
+	music_selection()
 	toggle_buttons(true)
 	p_pages = p_scrpt.size()
 	physical = Global.default_physical
@@ -79,43 +82,52 @@ func _ready():
 	pic.texture = load(p_scrpt[p_page]["image"])
 	
 	
-	char_info.get_node("chara_name").text = "name: " + Global.char_name
-	char_info.get_node("physical_health").text = "physical: " + str(physical)
-	char_info.get_node("mind_health").text = "mental: " + str(mental)
-	char_info.get_node("invincible").text = "invinci: " + "off"
+	char_info.get_node("chara_name").text = "name:" + Global.char_name
+	char_info.get_node("physical_health").text = "physical:" + str(physical)
+	char_info.get_node("mind_health").text = "mental:" + str(mental)
+	char_info.get_node("invincible").text = "invincible:" + "off"
+	char_info.get_node("used_invinci").text = "used:" + str(used_invinci)
+	char_info.get_node("sequence").text = "tasks:" + str(3 - order.size())
+	$non_interactive/location.text = "CENTER"
 	cur_time.text = time_format(minutes)
-	
+	#print(order.size())
 	pass # Replace with function body.
 
 func _input(event):
-	if game_mode == MODE.PROLOGUE and game_mode == MODE.ENDING:
+	if game_mode == MODE.PROLOGUE:
 		if event.is_action_pressed("mouse_left"):
 			if p_page < (p_pages-1):
-				#history.push_back(p_scrpt[p_page]["line"])
 				add_history(p_scrpt[p_page]["line"])
-				#his_text.text += history[p_page] + "\n"
-				#des_text.clear()
 				p_page += 1
 				des_text.text = p_scrpt[p_page]["line"]
 				pic.texture = load(p_scrpt[p_page]["image"])
 			else:
-				#add_history(p_scrpt[p_page]["line"])
-				
 				Input.set_custom_mouse_cursor(game_cursor)
 				toggle_buttons(false)
 				set_state(game_map["init_center"])
 				set_dialogue(game_map)
 				process_state(state)
 				game_mode = MODE.GAME
+				music_selection()
 				add_goal("GET OUT OF HERE.")
 				button_list.get_node("option4").text = "Toggle invincibility"
+	elif game_mode == MODE.ENDING:
+		if event.is_action_pressed("mouse_left"):
+			if e_page < (e_pages-1):
+				add_history(e_script[e_page]["line"])
+				e_page += 1
+				des_text.text = e_script[e_page]["line"]
+				pic.texture = load(e_script[e_page]["image"])
+			else:
+				if get_tree().change_scene("res://scenes/game_over.tscn") != 0:
+					get_tree().quit()
 	pass
 
 func _process(delta):
 	if delta:
 		if mental <= 0:
 			mental = 0
-		if demon_spawn >= 23:
+		if demon_spawn <= 23:
 			demon_spawn = 23
 		if demon_strength_attack >= 23:
 			demon_strength_attack = 23
@@ -123,12 +135,24 @@ func _process(delta):
 			demon_strength_health = 23
 		if physical <= 0:
 			physical = 0
+		if game_mode == MODE.ENDING:
+			toggle_buttons(true)
+		
+		if location == LOCATION.CENTER:
+			$non_interactive/location.text = "CENTER"
+		elif location == LOCATION.LEFT:
+			$non_interactive/location.text = "LEFT"
+		elif location == LOCATION.FRONT:
+			$non_interactive/location.text = "FRONT"
+		elif location == LOCATION.RIGHT:
+			$non_interactive/location.text = "RIGHT"
 		
 		cur_time.text = time_format(minutes)
-		char_info.get_node("physical_health").text = "phsyical: " + str(physical)
-		char_info.get_node("mind_health").text = "mind: " + str(mental)
-		char_info.get_node("invincible").text = "invinci: " + invinci
-		
+		char_info.get_node("physical_health").text = "phsyical:"+ str(physical)
+		char_info.get_node("mind_health").text = "mind:" + str(mental)
+		char_info.get_node("invincible").text = "invincible:" + invinci
+		char_info.get_node("used_invinci").text = "used:" + str(used_invinci)
+		char_info.get_node("sequence").text = "tasks:" + str(3 - order.size())
 	pass
 
 func add_history(txt):
@@ -191,70 +215,63 @@ func display_state(dis_state):
 	#des_text.clear()
 	
 	if minutes >= Global.finished_time:
-		print("ENDING - ASSIMILATION")
-		choosing_ending(Dialogues.assimilation)
+		if used_invinci:
+			choosing_ending(Dialogues.assimilation,1)
+		else:
+			choosing_ending(Dialogues.twentyThreeHundred,3)
 		
-	
-	if location == LOCATION.CENTER:
+	if location == LOCATION.CENTER and game_mode == MODE.GAME:
 		var demon_chance = 23
 		if minutes > Global.default_minutes:
 			demon_chance = floor(rand_range(0,demon_spawn))
-		print(demon_chance) # debugging purpose
-		if order.size() == 1:
-			des_text.text += "By the way, did you know that you can come back to the same wall, and it again?"
-			add_goal("Do the remaining two.")
-		elif order.size() == 2:
-			remove_goal()
-			add_goal("Do the rest.")
+		#print(demon_chance) # debugging purpose
+		#if order.size() == 1:
+		des_text.text += "By the way, did you know that you can come back to the same wall, and it again? "
+		#	add_goal("Do the remaining two.")
+		#elif order.size() == 2:
+		#	remove_goal()
+		#	add_goal("Do the rest.")
 		
 		if demon_chance == 0:
 			# This will be turn-based battle
-			
 			game_mode = MODE.BATTLE
+			music_selection()
 			#des_text.text = "The demon appears in the middle of the Place."
-			print("spwan demon")
+			#print("spwan demon")
 			des_text.text += "Oh no! A wild demon appears!"
 			battle_stage(true,true)
-			
 		else:
 			if order.size() >= 3:
-				if order.size() == 4:
-					remove_goal()
+			#	if order.size() == 4:
+			#		remove_goal()
 				if order != correct_order:
-					remove_goal()
+					#remove_goal()
 					if invinci == "off":
 						physical -= 10
 					mental -= 5
 					demon_spawn -= 2
 					# I dropped the hint there.
 					des_text.text += "You got the wrong sequence, and you felt nauseous in the end. You realized you need to go RIGHT first and FRONT last. Try again."
+					if goals.size() >= 2:
+						remove_goal()
 					add_goal("Figure out the correct sequence.")
 					order.clear()
 				else:
+					#print("CORRECT!")
 					if used_invinci:
-						print("ENDING - ABOVE HUMAN")
-						choosing_ending(Dialogues.aboveHuman) 
+						choosing_ending(Dialogues.aboveHuman,2) 
 					else:
-						print("ENDING - FULL EXIT")
-						choosing_ending(Dialogues.fullExit)
-						
-			if dis_state["type"] == "result":
-				order.append(dis_state["result"])
-			toggle_buttons(false)
-			des_text.text += dis_state["line"]
-			button_list.get_node("option1").text = dis_state["option1"]["text"]
-			button_list.get_node("option2").text = dis_state["option2"]["text"]
-			button_list.get_node("option3").text = dis_state["option3"]["text"]
-			#add_history(des_text.text)
+						choosing_ending(Dialogues.fullExit,5)
+				make_decision(dis_state)
+			else:
+				make_decision(dis_state)
 	else:
 		if physical <= 0:
-			print("DEAD MEAT.")
-			choosing_ending(Dialogues.deadMeat)
-		toggle_buttons(false)
-		des_text.text += dis_state["line"]
-		button_list.get_node("option1").text = dis_state["option1"]["text"]
-		button_list.get_node("option2").text = dis_state["option2"]["text"]
-		button_list.get_node("option3").text = dis_state["option3"]["text"]
+			#print("DEAD MEAT.")
+			choosing_ending(Dialogues.deadMeat,4)
+		if dis_state["type"] == "result":
+			order.append(dis_state["result"])
+		make_decision(dis_state)
 	pass
 
 func set_state(new_state):
@@ -276,7 +293,14 @@ func toggle_buttons(swi: bool):
 	for i in range(child_num):
 		var opt = "option" + str(i + 1)
 		button_list.get_node(opt).disabled = swi
+	pass
 
+func make_decision(dis_state):
+	toggle_buttons(false)
+	des_text.text += dis_state["line"]
+	button_list.get_node("option1").text = dis_state["option1"]["text"]
+	button_list.get_node("option2").text = dis_state["option2"]["text"]
+	button_list.get_node("option3").text = dis_state["option3"]["text"]
 	pass
 
 func battle_stage(swi,player_status):
@@ -295,21 +319,21 @@ func battle_stage(swi,player_status):
 		$animation.play_backwards("battle_mode")
 		
 		if minutes >= Global.finished_time:
-			print("ENDING - 2300")
-			choosing_ending(Dialogues.twentyThreeHundred)
+			#print("ENDING - 2300")
+			choosing_ending(Dialogues.twentyThreeHundred,3)
 		else:
 			if player_status == false:
-				print("DEAD MEAT.")
-				choosing_ending(Dialogues.deadMeat)
+				choosing_ending(Dialogues.deadMeat,4)
 			else:
 				des_text.text += "You win the battle between demon!"
 				$demon.reset()
 				game_mode = MODE.GAME
+				music_selection()
 				process_state(state)
 	pass
 
 # warning-ignore:unused_argument
-func choosing_ending(choice):
+func choosing_ending(choice,num):
 	"""
 	1. ASSIMILATION
 	2. ABOVE HUMAN
@@ -317,8 +341,50 @@ func choosing_ending(choice):
 	4. DEAD MEAT
 	5. FULL EXIT
 	"""
+	if game_mode == MODE.BATTLE:
+		$demon/battle_screen/buttons/order/attack.disabled = true
+		$demon/battle_screen/buttons/order/defend.disabled = true
+		$demon/battle_screen/buttons/order/invincible.disabled = true
+		$animation.play_backwards("battle_mode")
+	toggle_buttons(true)
 	game_mode = MODE.ENDING
+	Global.ending = num
+	music_selection()
 	e_script = choice
+	e_pages = e_script.size()
+	des_text.text = e_script[e_page]["line"]
+	pic.texture = load(e_script[e_page]["image"])
+	pass
+
+func music_selection():
+	# Stop everying
+	$soundtrack/prologue_music.playing = false
+	$soundtrack/game_music.playing = false
+	$soundtrack/battle_music.playing = false
+	$soundtrack/ending_1.playing = false
+	$soundtrack/ending_2.playing = false
+	$soundtrack/ending_3.playing = false
+	$soundtrack/ending_4.playing = false
+	$soundtrack/ending_5.playing = false
+	
+	
+	if game_mode == MODE.PROLOGUE:
+			$soundtrack/prologue_music.play()
+	elif game_mode == MODE.GAME:
+			$soundtrack/game_music.play()
+	elif game_mode == MODE.BATTLE:
+			$soundtrack/battle_music.play()
+	elif game_mode == MODE.ENDING:
+			if Global.ending == 1:
+				$soundtrack/ending_1.play()
+			elif Global.ending == 2:
+				$soundtrack/ending_2.play()
+			elif Global.ending == 3:
+				$soundtrack/ending_3.play()
+			elif Global.ending == 4:
+				$soundtrack/ending_4.play()
+			elif Global.ending == 5:
+				$soundtrack/ending_5.play()
 	pass
 
 # Buttons #

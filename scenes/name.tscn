@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/name.gd" type="Script" id=1]
 [ext_resource path="res://images/game-brick_wall-800x600.jpg" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://fonts/Kristi.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://images/small_house.png" type="Texture" id=6]
 [ext_resource path="res://fonts/Courier Prime.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://sounds/music/horror ambient by Vinrax.wav" type="AudioStream" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -26,7 +27,7 @@ font_data = ExtResource( 3 )
 
 [node name="name" type="Node"]
 script = ExtResource( 1 )
-name_limit = 14
+name_limit = 9
 
 [node name="background" type="TextureRect" parent="."]
 margin_right = 40.0
@@ -121,5 +122,7 @@ __meta__ = {
 }
 
 [node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
 [connection signal="text_changed" from="naming/input" to="." method="_on_input_text_changed"]
 [connection signal="pressed" from="naming/confirm" to="." method="_on_confirm_pressed"]

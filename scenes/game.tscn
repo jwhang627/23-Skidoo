@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://images/game-brick_wall-800x600.jpg" type="Texture" id=1]
 [ext_resource path="res://scenes/title.tscn" type="PackedScene" id=2]
@@ -15,6 +15,14 @@
 [ext_resource path="res://fonts/TerminusTTF-Bold Italic-4.47.0.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://scripts/demon.gd" type="Script" id=14]
 [ext_resource path="res://images/demon_0.png" type="Texture" id=15]
+[ext_resource path="res://sounds/music/subdue.ogg" type="AudioStream" id=16]
+[ext_resource path="res://sounds/music/Battle Theme.wav" type="AudioStream" id=17]
+[ext_resource path="res://sounds/music/smallheart.wav" type="AudioStream" id=18]
+[ext_resource path="res://sounds/music/Ancient Apparitions by marcelofg55.ogg" type="AudioStream" id=19]
+[ext_resource path="res://sounds/music/Horror Cinematic by bariq18.wav" type="AudioStream" id=20]
+[ext_resource path="res://sounds/music/Is this supposed to be here.ogg" type="AudioStream" id=21]
+[ext_resource path="res://sounds/music/Shattered souls.wav" type="AudioStream" id=22]
+[ext_resource path="res://sounds/music/corner-of-the-mind.wav" type="AudioStream" id=23]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -114,6 +122,34 @@ __meta__ = {
 margin_right = 800.0
 margin_bottom = 600.0
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="loc_label" type="Label" parent="non_interactive"]
+margin_left = 621.0
+margin_top = 72.0
+margin_right = 717.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
+text = "location:"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="location" type="Label" parent="non_interactive"]
+margin_left = 717.0
+margin_top = 72.0
+margin_right = 784.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
+text = "CENTER"
+align = 2
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -233,9 +269,23 @@ margin_bottom = 84.0
 custom_fonts/font = ExtResource( 7 )
 text = "invinci: off"
 
+[node name="used_invinci" type="Label" parent="non_interactive/char_info/order"]
+margin_top = 88.0
+margin_right = 142.0
+margin_bottom = 106.0
+custom_fonts/font = ExtResource( 7 )
+text = "used: False"
+
+[node name="sequence" type="Label" parent="non_interactive/char_info/order"]
+margin_top = 110.0
+margin_right = 142.0
+margin_bottom = 128.0
+custom_fonts/font = ExtResource( 7 )
+text = "[]"
+
 [node name="goal" type="Control" parent="non_interactive/char_info"]
 margin_left = 4.0
-margin_top = 106.0
+margin_top = 164.0
 margin_right = 146.0
 margin_bottom = 324.0
 __meta__ = {
@@ -425,7 +475,31 @@ custom_fonts/font = ExtResource( 9 )
 disabled = true
 text = "Give yourself invincibility."
 
-[node name="music" type="AudioStreamPlayer" parent="."]
+[node name="soundtrack" type="Node" parent="."]
+
+[node name="prologue_music" type="AudioStreamPlayer" parent="soundtrack"]
+stream = ExtResource( 16 )
+
+[node name="game_music" type="AudioStreamPlayer" parent="soundtrack"]
+stream = ExtResource( 21 )
+
+[node name="battle_music" type="AudioStreamPlayer" parent="soundtrack"]
+stream = ExtResource( 17 )
+
+[node name="ending_1" type="AudioStreamPlayer" parent="soundtrack"]
+stream = ExtResource( 19 )
+
+[node name="ending_2" type="AudioStreamPlayer" parent="soundtrack"]
+stream = ExtResource( 23 )
+
+[node name="ending_3" type="AudioStreamPlayer" parent="soundtrack"]
+stream = ExtResource( 20 )
+
+[node name="ending_4" type="AudioStreamPlayer" parent="soundtrack"]
+stream = ExtResource( 22 )
+
+[node name="ending_5" type="AudioStreamPlayer" parent="soundtrack"]
+stream = ExtResource( 18 )
 
 [node name="animation" type="AnimationPlayer" parent="."]
 anims/attack_demon = SubResource( 6 )

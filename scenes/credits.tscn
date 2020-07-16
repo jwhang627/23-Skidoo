@@ -1,0 +1,120 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://images/black_square.png" type="Texture" id=1]
+[ext_resource path="res://scenes/title.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fonts/TheEndFont(RF).ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/TerminusTTF-4.47.0.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://fonts/TerminusTTF-Bold-4.47.0.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://fonts/TerminusTTF-Bold Italic-4.47.0.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://fonts/TerminusTTF-Italic-4.47.0.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://scripts/credits.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+font_data = ExtResource( 3 )
+
+[node name="credits" type="Node"]
+script = ExtResource( 8 )
+
+[node name="background" type="TextureRect" parent="."]
+margin_right = 800.0
+margin_bottom = 600.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" parent="." instance=ExtResource( 2 )]
+
+[node name="text" type="RichTextLabel" parent="."]
+margin_left = 16.0
+margin_top = 96.0
+margin_right = 784.0
+margin_bottom = 600.0
+custom_fonts/bold_italics_font = SubResource( 4 )
+custom_fonts/italics_font = SubResource( 5 )
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0.878431, 0.282353, 0.368627, 1 )
+bbcode_enabled = true
+bbcode_text = "[b]Planning and Coding:[/b] All by myself - designergaze a.k.a. Jay Whang
+
+[b]Artworks:[/b]
+They are all PUBLIC DOMAIN, but I'm still going to credit the artist. [i][b]David Lewis Johnson[/b][/i] and [i][b]Luigi Castellani[/b][/i] made these artwork for the tabletop RPG [i]Silent Legion[/i] (from Sine Nomine Publishing)
+Here are the links:
+David Lewis Johnson - [url]https://tinyurl.com/ycpucjug[/url]
+Luigi Castellani - [url]https://tinyurl.com/ydy9mprf[/url]
+
+And most of the photographs used for the game came from Wikimedia Commons.
+
+[b]Music:[/b]
+Soundtracks are licensed under [b]Creative Commons Attribution 3.0 Unported[/b] and [b]4.0 International[/b].
+Contains music ©2019 [b]Joshua McLean[/b] ([url]mrjoshuamclean.com[/url])
+Licensed under [b]Creative Commons Attribution 4.0 International[/b]
+
+[i]Horror Ambient[/i] by [b]Vinrax[/b] ([url]https://tinyurl.com/y8fp6jfo[/url])
+[i]Subdue[/i] by [b]Joshua McLean[/b]
+[i]Is This Going To Be There?[/i] by [b]Gundatsch[/b] ([url]https://tinyurl.com/y98s5rjg[/url])
+[i]Battle Theme[/i] by [b]Mega Pixel Music Lab[/b] ([url]https://tinyurl.com/ybuplxbe[/url])
+[i]Ancient Apparitions[/i] by [b]marcelofg55[/b] ([url]https://tinyurl.com/ycbffysu[/url])
+[i]Corner of the World[/i] by [b]Joshua McLean[/b]
+[i]Horror Cinematic[/i] by [b]bariq18[/b] ([url]https://tinyurl.com/y7jjsq94[/url])
+[i]Shattered Souls[/i] by [b]Samza[/b] (Public Domain)
+[i]Small Heart[/i] by [b]Joshua McLean[/b]
+[i]End of the Trip[/i] by [b]Komiku[/b] (Public Domain)"
+text = "Planning and Coding: All by myself - designergaze a.k.a. Jay Whang
+
+Artworks:
+They are all PUBLIC DOMAIN, but I'm still going to credit the artist. David Lewis Johnson and Luigi Castellani made these artwork for the tabletop RPG Silent Legion (from Sine Nomine Publishing)
+Here are the links:
+David Lewis Johnson - https://tinyurl.com/ycpucjug
+Luigi Castellani - https://tinyurl.com/ydy9mprf
+
+And most of the photographs used for the game came from Wikimedia Commons.
+
+Music:
+Soundtracks are licensed under Creative Commons Attribution 3.0 Unported and 4.0 International.
+Contains music ©2019 Joshua McLean (mrjoshuamclean.com)
+Licensed under Creative Commons Attribution 4.0 International
+
+Horror Ambient by Vinrax (https://tinyurl.com/y8fp6jfo)
+Subdue by Joshua McLean
+Is This Going To Be There? by Gundatsch (https://tinyurl.com/y98s5rjg)
+Battle Theme by Mega Pixel Music Lab (https://tinyurl.com/ybuplxbe)
+Ancient Apparitions by marcelofg55 (https://tinyurl.com/ycbffysu)
+Corner of the World by Joshua McLean
+Horror Cinematic by bariq18 (https://tinyurl.com/y7jjsq94)
+Shattered Souls by Samza (Public Domain)
+Small Heart by Joshua McLean
+End of the Trip by Komiku (Public Domain)"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="return" type="Button" parent="."]
+margin_left = 591.0
+margin_top = 523.0
+margin_right = 784.0
+margin_bottom = 584.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
+text = "return"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="return" to="." method="_on_return_pressed"]
