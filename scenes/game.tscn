@@ -32,7 +32,7 @@ font_data = ExtResource( 11 )
 [sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 10 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "attack_demon"
 length = 0.4
 tracks/0/type = "value"
@@ -48,7 +48,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "attack_player"
 length = 0.4
 tracks/0/type = "value"
@@ -64,8 +64,7 @@ tracks/0/keys = {
 "values": [ Color( 0.901961, 0.901961, 0.901961, 0.0901961 ), Color( 0.901961, 0, 0, 0.0901961 ), Color( 0.901961, 0.901961, 0.901961, 0.0901961 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "battle_mode"
+[sub_resource type="Animation" id=8]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("demon/battle_screen:rect_position")
@@ -183,6 +182,7 @@ margin_top = 256.0
 margin_right = 166.0
 margin_bottom = 584.0
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -428,9 +428,9 @@ text = "Give yourself invincibility."
 [node name="music" type="AudioStreamPlayer" parent="."]
 
 [node name="animation" type="AnimationPlayer" parent="."]
-anims/attack_demon = SubResource( 7 )
-anims/attack_player = SubResource( 8 )
-anims/battle_mode = SubResource( 6 )
+anims/attack_demon = SubResource( 6 )
+anims/attack_player = SubResource( 7 )
+anims/battle_mode = SubResource( 8 )
 anims/invincibility_defense = SubResource( 9 )
 [connection signal="pressed" from="interactive/buttons/order/option1" to="." method="_on_option1_pressed"]
 [connection signal="pressed" from="interactive/buttons/order/option2" to="." method="_on_option2_pressed"]

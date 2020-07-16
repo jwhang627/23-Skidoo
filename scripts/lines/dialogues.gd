@@ -17,7 +17,7 @@ var p_scrpt = [
 	{"line":"An extraordinary power then wrapped around you and unlocked your hidden ability.","image":"res://images/brick_wall-600x600.jpg"},
 	{"line":"The birthday gift from another dimension.","image":"res://images/brick_wall-600x600.jpg"},
 	{"line":"The door of the Place opened, and you walked back home feeling fatigued.","image":"res://images/brick_wall-600x600.jpg"},
-	{"line":"Your parents saw you returning and called for medical help.","image":"res://images/brick_wall-600x600.jpg"},
+	{"line":"Your parents saw you returning and called for a help.","image":"res://images/brick_wall-600x600.jpg"},
 	{"line":"You then didn't feel familiar with your safest place in this world.","image":"res://images/brick_wall-600x600.jpg"},
 	{"line":"Your child self couldn't reconcile with this alien feeling.","image":"res://images/brick_wall-600x600.jpg"},
 	{"line":"You remember this incident where you realized this hidden ability.","image":"res://images/brick_wall-600x600.jpg"},
@@ -45,7 +45,7 @@ var p_scrpt = [
 	{"line":"You must remind your humanity.","image":"res://images/grandma.png"},
 	{"line":"From there on, you stopped being invincible.","image":"res://images/grandma.png"},
 	{"line":"A week after your 23rd birthday, you decide to destruct the Place.","image":"res://images/brick_wall-600x600.jpg"},
-	{"line":"You prepare by wearing the amulet, and bringing a flashlight and a sledgehammer.","image":"res://images/sledgehammer.png"},
+	{"line":"You prepare by wearing the amulet, and bringing a lantern and a sledgehammer.","image":"res://images/sledgehammer.png"},
 	{"line":"Like those Wormsley Common gangs, you will destroy this Place from the inside.","image":"res://images/sledgehammer.png"},
 	{"line":"You start with the door, and hope that it will never lock you in again.","image":"res://images/small_house.png"},
 	{"line":"You see the circle on the concrete floor.","image":"res://images/pentagram_square_BW.jpg"},
@@ -374,8 +374,42 @@ var game_map = {
 	}
 }
 
-var assimilation = []
-var aboveHuman = []
-var twentyThreeHundred = []
-var deadMeat = []
-var fullExit = []
+var assimilation = [
+	{"line":"The Place starts to shake, and even harder. Your body levitates to the air. The port the front wall opens.","image":"res://images/black_square.png"},
+	{"line":"Those extraordinary powers come back again to wrap you around again.","image":"res://images/black_square.png"},
+	{"line":"Inside-out, your body transform into the true inner beast you have suppressed and hidden all these times.","image":"res://images/black_square.png"},
+	{"line":"With all the humanity you have shed along the way, you will accept another way of life.","image":"res://images/black_square.png"},
+	{"line":"Many demons - larger than those you have fought - come from the portal to you and say, \"You have proven your worthiness. Come join us.\"","image":"res://images/black_square.png"}
+]
+
+var aboveHuman = [
+	{"line":"The Place starts to shake, then it stops.","image":"res://images/black_square.png"},
+	{"line":"You see a beam of light behind you on the front wall.","image":"res://images/black_square.png"},
+	{"line":"You come out of the Place and see the night sky above.","image":"res://images/black_square.png"},
+	{"line":"You see the starless night reflecting your true self.","image":"res://images/black_square.png"},
+	{"line":"Your ordeal and the use of invincibility wisely have proven that you are..... more than a human.","image":"res://images/black_square.png"}
+]
+
+var twentyThreeHundred = [
+	{"line":"The Place starts to shake, and the portal on the front wall opens.","image":"res://images/black_square.png"},
+	{"line":"The mysterious colors shine on you like a crazy diamond, and ingulf you in.","image":"res://images/black_square.png"},
+	{"line":"Then your amulet rattles. It then takes off from you and morphs into a human shape.","image":"res://images/black_square.png"},
+	{"line":"The amulet turns into the knight in a biopunk armor. The knight used to be a human being, but became rather unnatural once he entered into a different dimension.","image":"res://images/black_square.png"},
+	{"line":"Since you didn't succeed in closing the portal to the other dimension, you have no choice but continue the journey with the amulet knight.","image":"res://images/black_square.png"}
+]
+
+var deadMeat = [
+	{"line":"The Place starts to shake.","image":"res://images/black_square.png"},
+	{"line":"You, while claiming on your humanity, are lying on the ground exhausted.","image":"res://images/black_square.png"},
+	{"line":"More demons from the portal swarm in.","image":"res://images/black_square.png"},
+	{"line":"Each of them take a part of your flesh, and others followed.","image":"res://images/black_square.png"},
+	{"line":"You are their latest meal.","image":"res://images/black_square.png"}
+]
+
+var fullExit = [
+	{"line":"The Place starts to shake, then it stops.","image":"res://images/black_square.png"},
+	{"line":"You see a beam of light behind you on the front wall.","image":"res://images/black_square.png"},
+	{"line":"You come out of the Place, and it crumbles down to the ground.","image":"res://images/black_square.png"},
+	{"line":"You see the night sky full of stars.","image":"res://images/black_square.png"},
+	{"line":"And the light from a full moon shines on you like a spotlight.","image":"res://images/black_square.png"}
+]

@@ -50,6 +50,7 @@ if location == \"center\" and rand_range(0,demon_spawn) == 0:
 var p_pages = 0
 var p_page = 0
 var p_scrpt = Dialogues.p_scrpt
+var e_script = []
 var game_map = Dialogues.game_map
 
 var state = {}
@@ -87,7 +88,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _input(event):
-	if game_mode == MODE.PROLOGUE:
+	if game_mode == MODE.PROLOGUE and game_mode == MODE.ENDING:
 		if event.is_action_pressed("mouse_left"):
 			if p_page < (p_pages-1):
 				#history.push_back(p_scrpt[p_page]["line"])
@@ -112,7 +113,7 @@ func _input(event):
 
 func _process(delta):
 	if delta:
-		if mental < 0:
+		if mental <= 0:
 			mental = 0
 		if demon_spawn >= 23:
 			demon_spawn = 23
@@ -120,6 +121,8 @@ func _process(delta):
 			demon_strength_attack = 23
 		if demon_strength_health >= 23:
 			demon_strength_health = 23
+		if physical <= 0:
+			physical = 0
 		
 		cur_time.text = time_format(minutes)
 		char_info.get_node("physical_health").text = "phsyical: " + str(physical)
@@ -189,6 +192,8 @@ func display_state(dis_state):
 	
 	if minutes >= Global.finished_time:
 		print("ENDING - ASSIMILATION")
+		choosing_ending(Dialogues.assimilation)
+		
 	
 	if location == LOCATION.CENTER:
 		var demon_chance = 23
@@ -228,8 +233,10 @@ func display_state(dis_state):
 				else:
 					if used_invinci:
 						print("ENDING - ABOVE HUMAN")
+						choosing_ending(Dialogues.aboveHuman) 
 					else:
 						print("ENDING - FULL EXIT")
+						choosing_ending(Dialogues.fullExit)
 						
 			if dis_state["type"] == "result":
 				order.append(dis_state["result"])
@@ -240,6 +247,9 @@ func display_state(dis_state):
 			button_list.get_node("option3").text = dis_state["option3"]["text"]
 			#add_history(des_text.text)
 	else:
+		if physical <= 0:
+			print("DEAD MEAT.")
+			choosing_ending(Dialogues.deadMeat)
 		toggle_buttons(false)
 		des_text.text += dis_state["line"]
 		button_list.get_node("option1").text = dis_state["option1"]["text"]
@@ -286,9 +296,11 @@ func battle_stage(swi,player_status):
 		
 		if minutes >= Global.finished_time:
 			print("ENDING - 2300")
+			choosing_ending(Dialogues.twentyThreeHundred)
 		else:
 			if player_status == false:
 				print("DEAD MEAT.")
+				choosing_ending(Dialogues.deadMeat)
 			else:
 				des_text.text += "You win the battle between demon!"
 				$demon.reset()
@@ -305,6 +317,8 @@ func choosing_ending(choice):
 	4. DEAD MEAT
 	5. FULL EXIT
 	"""
+	game_mode = MODE.ENDING
+	e_script = choice
 	pass
 
 # Buttons #
