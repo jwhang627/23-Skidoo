@@ -5,7 +5,7 @@ export var name_limit = 12
 
 func _ready():
 	CorrectOrder.make_sequence()
-	#print(CorrectOrder.order)
+	print(CorrectOrder.order)
 	pass # Replace with function body.
 
 # warning-ignore:unused_argument
