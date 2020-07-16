@@ -1,3 +1,7 @@
+/******
+Source: https://github.com/To-Fujita/Godot_v3.2-Basic_Shaders
+******/
+
 shader_type canvas_item;
 // Monochrome Filter
 
