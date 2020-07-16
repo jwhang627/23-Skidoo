@@ -4,6 +4,8 @@
 23](https://itch.io/jam/godot-wild-jam-23) and [Weekly Game Jam
 157](https://itch.io/jam/weekly-game-jam-157).
 
+![23 Skidoo Logo](game/images/23_logo.png)
+
 ## Godot Wild Jam 23
 ![Godot Wild Jam](README/GWJ_logo.png)
 ### Theme
@@ -14,3 +16,9 @@
 ![Weekly Game Jam](README/WeeklyGameJam.gif)
 ### WGJ Theme
 ![Weekly Game Jam Theme](README/WGJ_theme.png)
+## Screenshots
+![screenshot 0](README/screenshot_0.png)
+
+![screenshot 1](README/screenshot_1.png)
+
+![screenshot 2](README/screenshot_2.png)
