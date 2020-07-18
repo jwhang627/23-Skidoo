@@ -8,9 +8,8 @@
 
 ## Tools used
 
-Desktop: Manjaro 20.01
-Game Engine: Godot 3.2.2
-Tools:
+- Workstation Desktop: Manjaro Linux
+- Game Engine: Godot 3.2.2
 - GNU Image Manipulation Program
 - Audacity
 - Krita
