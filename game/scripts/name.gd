@@ -5,11 +5,12 @@ export var name_limit = 12
 
 func _ready():
 	CorrectOrder.make_sequence()
-	print(CorrectOrder.order)
+	#print(CorrectOrder.order)
 	pass # Replace with function body.
 
 # warning-ignore:unused_argument
 func _input(event):
+	
 	if Input.is_key_pressed(KEY_ENTER):
 		if c_name.text.length() != 0:
 			Global.char_name = c_name.text.capitalize()
@@ -36,6 +37,7 @@ func _on_confirm_pressed():
 	pass # Replace with function body.
 
 func _on_input_text_changed():
+	$typing.play()
 	if c_name.text.length() > name_limit:
 		c_name.readonly = true
 	pass # Replace with function body.

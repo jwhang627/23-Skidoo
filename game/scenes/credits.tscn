@@ -9,19 +9,19 @@
 [ext_resource path="res://fonts/TerminusTTF-Italic-4.47.0.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://scripts/credits.gd" type="Script" id=8]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 size = 48
 font_data = ExtResource( 3 )
 
@@ -44,27 +44,26 @@ margin_left = 16.0
 margin_top = 96.0
 margin_right = 784.0
 margin_bottom = 600.0
-custom_fonts/bold_italics_font = SubResource( 4 )
-custom_fonts/italics_font = SubResource( 5 )
-custom_fonts/bold_font = SubResource( 1 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/bold_italics_font = SubResource( 1 )
+custom_fonts/italics_font = SubResource( 2 )
+custom_fonts/bold_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 0.878431, 0.282353, 0.368627, 1 )
 bbcode_enabled = true
 bbcode_text = "[b]Planning and Coding:[/b] All by myself - designergaze a.k.a. Jay Whang
 
 [b]Artworks:[/b]
-They are all PUBLIC DOMAIN, but I'm still going to credit the artist. [i][b]David Lewis Johnson[/b][/i] and [i][b]Luigi Castellani[/b][/i] made these artwork for the tabletop RPG [i]Silent Legion[/i] (from Sine Nomine Publishing)
+Most of the photographs used for the game are Public Domain and came from Wikimedia Commons.
+Artworks  are all PUBLIC DOMAIN, but I'm still going to credit the artist. [i][b]David Lewis Johnson[/b][/i] and [i][b]Luigi Castellani[/b][/i] made these artwork for the tabletop RPG [i]Silent Legion[/i] (from Sine Nomine Publishing)
 Here are the links:
 David Lewis Johnson - [url]https://tinyurl.com/ycpucjug[/url]
 Luigi Castellani - [url]https://tinyurl.com/ydy9mprf[/url]
 
-And most of the photographs used for the game came from Wikimedia Commons.
-
-[b]Music:[/b]
-Soundtracks are licensed under [b]Creative Commons Attribution 3.0 Unported[/b] and [b]4.0 International[/b].
+[b]Music and Sound Effects:[/b]
+Soundtracks and Sound Effects are licensed under [b]Creative Commons Attribution 3.0 Unported[/b] and [b]4.0 International[/b].
 Contains music ©2019 [b]Joshua McLean[/b] ([url]mrjoshuamclean.com[/url])
 Licensed under [b]Creative Commons Attribution 4.0 International[/b]
-
+SFXs by [b]Socapex[/b], [b]spookymodern[/b], and [b]Nicole Marie T.[/b]
 [i]Horror Ambient[/i] by [b]Vinrax[/b] ([url]https://tinyurl.com/y8fp6jfo[/url])
 [i]Subdue[/i] by [b]Joshua McLean[/b]
 [i]Is This Going To Be There?[/i] by [b]Gundatsch[/b] ([url]https://tinyurl.com/y98s5rjg[/url])
@@ -78,18 +77,17 @@ Licensed under [b]Creative Commons Attribution 4.0 International[/b]
 text = "Planning and Coding: All by myself - designergaze a.k.a. Jay Whang
 
 Artworks:
-They are all PUBLIC DOMAIN, but I'm still going to credit the artist. David Lewis Johnson and Luigi Castellani made these artwork for the tabletop RPG Silent Legion (from Sine Nomine Publishing)
+Most of the photographs used for the game are Public Domain and came from Wikimedia Commons.
+Artworks  are all PUBLIC DOMAIN, but I'm still going to credit the artist. David Lewis Johnson and Luigi Castellani made these artwork for the tabletop RPG Silent Legion (from Sine Nomine Publishing)
 Here are the links:
 David Lewis Johnson - https://tinyurl.com/ycpucjug
 Luigi Castellani - https://tinyurl.com/ydy9mprf
 
-And most of the photographs used for the game came from Wikimedia Commons.
-
-Music:
-Soundtracks are licensed under Creative Commons Attribution 3.0 Unported and 4.0 International.
+Music and Sound Effects:
+Soundtracks and Sound Effects are licensed under Creative Commons Attribution 3.0 Unported and 4.0 International.
 Contains music ©2019 Joshua McLean (mrjoshuamclean.com)
 Licensed under Creative Commons Attribution 4.0 International
-
+SFXs by Socapex, spookymodern, and Nicole Marie T.
 Horror Ambient by Vinrax (https://tinyurl.com/y8fp6jfo)
 Subdue by Joshua McLean
 Is This Going To Be There? by Gundatsch (https://tinyurl.com/y98s5rjg)
@@ -110,7 +108,7 @@ margin_left = 591.0
 margin_top = 523.0
 margin_right = 784.0
 margin_bottom = 584.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.878431, 0.282353, 0.368627, 1 )
 text = "return"
 flat = true

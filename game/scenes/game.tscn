@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://images/game-brick_wall-800x600.jpg" type="Texture" id=1]
 [ext_resource path="res://scenes/title.tscn" type="PackedScene" id=2]
@@ -23,6 +23,15 @@
 [ext_resource path="res://sounds/music/Is this supposed to be here.ogg" type="AudioStream" id=21]
 [ext_resource path="res://sounds/music/Shattered souls.wav" type="AudioStream" id=22]
 [ext_resource path="res://sounds/music/corner-of-the-mind.wav" type="AudioStream" id=23]
+[ext_resource path="res://sounds/effects/bad answer rumbling.wav" type="AudioStream" id=24]
+[ext_resource path="res://sounds/effects/Earth Element Magic Spell.ogg" type="AudioStream" id=25]
+[ext_resource path="res://sounds/effects/short rumbling.wav" type="AudioStream" id=26]
+[ext_resource path="res://sounds/effects/invincibility_off.wav" type="AudioStream" id=27]
+[ext_resource path="res://sounds/effects/Socapex - big punch.wav" type="AudioStream" id=28]
+[ext_resource path="res://sounds/effects/invincibility_on.wav" type="AudioStream" id=29]
+[ext_resource path="res://sounds/effects/Magic Shield by spookymodem.wav" type="AudioStream" id=30]
+[ext_resource path="res://sounds/effects/Socapex - hurt.wav" type="AudioStream" id=31]
+[ext_resource path="res://sounds/effects/Socapex - small knock.wav" type="AudioStream" id=32]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -500,6 +509,40 @@ stream = ExtResource( 22 )
 
 [node name="ending_5" type="AudioStreamPlayer" parent="soundtrack"]
 stream = ExtResource( 18 )
+
+[node name="sfx" type="Node" parent="soundtrack"]
+
+[node name="good_answer" type="AudioStreamPlayer" parent="soundtrack/sfx"]
+stream = ExtResource( 25 )
+
+[node name="bad_answer" type="AudioStreamPlayer" parent="soundtrack/sfx"]
+stream = ExtResource( 24 )
+
+[node name="rumble_effect" type="AudioStreamPlayer" parent="soundtrack/sfx"]
+stream = ExtResource( 26 )
+volume_db = -5.0
+pitch_scale = 0.8
+
+[node name="attack" type="AudioStreamPlayer" parent="soundtrack/sfx"]
+stream = ExtResource( 28 )
+
+[node name="shield" type="AudioStreamPlayer" parent="soundtrack/sfx"]
+stream = ExtResource( 30 )
+volume_db = 5.0
+pitch_scale = 1.2
+
+[node name="invincible_defense" type="AudioStreamPlayer" parent="soundtrack/sfx"]
+stream = ExtResource( 32 )
+
+[node name="invincible_on" type="AudioStreamPlayer" parent="soundtrack/sfx"]
+stream = ExtResource( 29 )
+
+[node name="invincible_off" type="AudioStreamPlayer" parent="soundtrack/sfx"]
+stream = ExtResource( 27 )
+
+[node name="hurt" type="AudioStreamPlayer" parent="soundtrack/sfx"]
+stream = ExtResource( 31 )
+pitch_scale = 0.8
 
 [node name="animation" type="AnimationPlayer" parent="."]
 anims/attack_demon = SubResource( 6 )

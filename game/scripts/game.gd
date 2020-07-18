@@ -215,6 +215,8 @@ func display_state(dis_state):
 	#des_text.clear()
 	
 	if minutes >= Global.finished_time:
+		$soundtrack/sfx/bad_answer.pitch_scale = 1.1
+		$soundtrack/sfx/bad_answer.play()
 		if used_invinci:
 			choosing_ending(Dialogues.assimilation,1)
 		else:
@@ -227,49 +229,44 @@ func display_state(dis_state):
 		#print(demon_chance) # debugging purpose
 		if order.size() == 1:
 			des_text.text += "By the way, did you know that you can come back to the same wall, and it again? "
-		#	add_goal("Do the remaining two.")
-		#elif order.size() == 2:
-		#	remove_goal()
-		#	add_goal("Do the rest.")
 		
-		if demon_chance == 0:
-			# This will be turn-based battle
-			game_mode = MODE.BATTLE
-			music_selection()
-			#des_text.text = "The demon appears in the middle of the Place."
-			#print("spwan demon")
-			des_text.text += "Oh no! A wild demon appears!"
-			battle_stage(true,true)
-		else:
-			if order.size() >= 3:
-			#	if order.size() == 4:
-			#		remove_goal()
-				if order != correct_order:
-					#remove_goal()
-					if invinci == "off":
-						physical -= 10
-					mental -= 5
-					demon_spawn -= 2
-					# I dropped the hint there.
-					des_text.text += "You got the wrong sequence, and you felt nauseous in the end. You realized you need to go RIGHT first and FRONT last. Try again."
-					if goals.size() >= 2:
-						remove_goal()
-					add_goal("Figure out the correct sequence.")
-					order.clear()
+		if order.size() >= 3:
+			if order != correct_order:
+				$soundtrack/sfx/bad_answer.play()
+				if invinci == "off":
+					physical -= 10
+				mental -= 5
+				demon_spawn -= 2
+				# I dropped the hint there.
+				des_text.text += "You got the wrong sequence, and you felt nauseous in the end. You realized you need to go RIGHT first and FRONT last. Try again."
+				if goals.size() >= 2:
+					remove_goal()
+				add_goal("Figure out the correct sequence.")
+				order.clear()
+			else:
+				#print("CORRECT!")
+				$soundtrack/sfx/good_answer.play()
+				if used_invinci:
+					choosing_ending(Dialogues.aboveHuman,2) 
 				else:
-					#print("CORRECT!")
-					if used_invinci:
-						choosing_ending(Dialogues.aboveHuman,2) 
-					else:
-						choosing_ending(Dialogues.fullExit,5)
-				make_decision(dis_state)
+					choosing_ending(Dialogues.fullExit,5)
+			make_decision(dis_state)
+		else:
+			if demon_chance == 0:
+				game_mode = MODE.BATTLE
+				music_selection()
+				des_text.text += "Oh no! A wild demon appears!"
+				battle_stage(true,true)
 			else:
 				make_decision(dis_state)
 	else:
 		if physical <= 0:
 			#print("DEAD MEAT.")
+			$soundtrack/sfx/bad_answer.pitch_scale = 0.75
+			$soundtrack/sfx/bad_answer.play()
 			choosing_ending(Dialogues.deadMeat,4)
 		if dis_state["type"] == "result":
+			$soundtrack/sfx/rumble_effect.play()
 			order.append(dis_state["result"])
 		make_decision(dis_state)
 	pass
@@ -320,9 +317,11 @@ func battle_stage(swi,player_status):
 		
 		if minutes >= Global.finished_time:
 			#print("ENDING - 2300")
+			$soundtrack/sfx/bad_answer.play()
 			choosing_ending(Dialogues.twentyThreeHundred,3)
 		else:
 			if player_status == false:
+				$soundtrack/sfx/bad_answer.play()
 				choosing_ending(Dialogues.deadMeat,4)
 			else:
 				des_text.text += "You win the battle between demon!"
@@ -433,10 +432,12 @@ func _on_option4_pressed():
 	if game_mode != MODE.PROLOGUE and game_mode != MODE.ENDING:
 		if $non_interactive/monochrome.visible == true:
 			$non_interactive/monochrome.visible = false
+			$soundtrack/sfx/invincible_off.play()
 			invinci = "off"
 			des_text.text = "Invincible mode off."
 		else:
 			$non_interactive/monochrome.visible = true
+			$soundtrack/sfx/invincible_on.play()
 			invinci = "on"
 			des_text.text = "Invincible mode on."
 	pass # Replace with function body.

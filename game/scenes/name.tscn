@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/name.gd" type="Script" id=1]
 [ext_resource path="res://images/game-brick_wall-800x600.jpg" type="Texture" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://images/small_house.png" type="Texture" id=6]
 [ext_resource path="res://fonts/Courier Prime.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://sounds/music/horror ambient by Vinrax.wav" type="AudioStream" id=8]
+[ext_resource path="res://images/Wildcard_1.png" type="Texture" id=9]
+[ext_resource path="res://images/Wildcard_3.png" type="Texture" id=10]
+[ext_resource path="res://sounds/effects/Typing Sfx by Nicole Marie T.wav" type="AudioStream" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -36,6 +39,31 @@ texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="wildcards" type="Control" parent="."]
+margin_right = 800.0
+margin_bottom = 603.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="poster_0" type="TextureRect" parent="wildcards"]
+modulate = Color( 1, 1, 1, 0.658824 )
+margin_left = -34.4611
+margin_top = 121.363
+margin_right = 194.539
+margin_bottom = 421.363
+rect_rotation = -15.0
+texture = ExtResource( 9 )
+
+[node name="poster_1" type="TextureRect" parent="wildcards"]
+modulate = Color( 1, 1, 1, 0.694118 )
+margin_left = 631.861
+margin_top = 61.4306
+margin_right = 861.861
+margin_bottom = 361.431
+rect_rotation = 30.0
+texture = ExtResource( 10 )
 
 [node name="title" parent="." instance=ExtResource( 4 )]
 
@@ -124,5 +152,8 @@ __meta__ = {
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 autoplay = true
+
+[node name="typing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
 [connection signal="text_changed" from="naming/input" to="." method="_on_input_text_changed"]
 [connection signal="pressed" from="naming/confirm" to="." method="_on_confirm_pressed"]

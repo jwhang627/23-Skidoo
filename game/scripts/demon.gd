@@ -40,6 +40,7 @@ func player_turn():
 
 func get_attacked(pt):
 	get_parent().get_node("animation").play("attack_demon")
+	get_parent().get_node("soundtrack/sfx/hurt").play()
 	demon_health -= pt
 	pass
 
@@ -48,13 +49,18 @@ func attack_opponent():
 	var attk = floor(rand_range(attack_pt - 5, attack_pt + 5))
 	if get_parent().invinci == "off":
 		if defend_on:
+			get_parent().get_node("soundtrack/sfx/attack").pitch_scale = 1.1
 			get_parent().physical -= int((attk - attk*((get_parent().mental*0.8)/Global.default_mind)))
 		else:
+			get_parent().get_node("soundtrack/sfx/attack").pitch_scale = 1
 			get_parent().physical -= attk
+		get_parent().get_node("soundtrack/sfx/attack").play()
 		get_parent().get_node("animation").play("attack_player")
 	else:
 		get_parent().physical -= 0
+		get_parent().get_node("soundtrack/sfx/invincible_defense").play()
 		get_parent().get_node("animation").play("invincibility_defense")
+	
 	pass
 
 func reset():
@@ -73,7 +79,11 @@ func _on_attack_pressed():
 		get_parent().demon_strength_attack -= 1
 		get_parent().demon_strength_health -= 1
 		get_parent().mental -= get_parent().mental_drop
-	
+		get_parent().get_node("soundtrack/sfx/attack").pitch_scale = 1.75
+	else:
+		get_parent().get_node("soundtrack/sfx/attack").pitch_scale = 1.5
+		
+	get_parent().get_node("soundtrack/sfx/attack").play()
 	get_attacked(floor(rand_range(50,73)))
 	get_parent().minutes += 1
 	
@@ -85,7 +95,9 @@ func _on_defend_pressed():
 		get_parent().demon_strength_attack -= 1
 		get_parent().demon_strength_health -= 1
 		get_parent().mental -= get_parent().mental_drop
+		get_parent().get_node("soundtrack/sfx/shield").pitch_scale = 0.8
 	
+	get_parent().get_node("soundtrack/sfx/shield").play()
 	defend_on = true
 	get_parent().minutes += 1
 	if get_parent().minutes >= Global.finished_time:
@@ -99,11 +111,15 @@ func _on_invincible_pressed():
 	if get_parent().invinci == "on":
 		get_parent().get_node("non_interactive/monochrome").visible = false
 		get_parent().invinci = "off"
+		#$soundtrack/sfx/invincible_off.play()
+		get_parent().get_node("soundtrack/sfx/invincible_off").play()
 	else:
 		get_parent().get_node("non_interactive/monochrome").visible = true
 		if get_parent().used_invinci == false:
 			get_parent().used_invinci = true
 		get_parent().invinci = "on"
+		#$soundtrack/sfx/invincible_on.play()
+		get_parent().get_node("soundtrack/sfx/invincible_on").play()
 	pass # Replace with function body.
 
 func _on_animation_finished(anim_name):
