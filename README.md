@@ -6,6 +6,17 @@
 
 ![23 Skidoo Logo](game/images/23_logo.png)
 
+## Tools used
+
+Desktop: Manjaro 20.01
+Game Engine: Godot 3.2.2
+Tools:
+- GNU Image Manipulation Program
+- Audacity
+- Krita
+- Emacs
+- Atom
+
 ## Godot Wild Jam 23
 ![Godot Wild Jam](README/GWJ_logo.png)
 ### Theme
