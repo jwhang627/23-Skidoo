@@ -64,7 +64,7 @@ var order = []
 var correct_order = CorrectOrder.order
 
 var game_cursor = load("res://images/hammer_cursor.png")
-
+var no_more_battle = true
 var game_mode = MODE.PROLOGUE
 
 func _ready():
@@ -125,10 +125,15 @@ func _input(event):
 
 func _process(delta):
 	if delta:
+		if game_mode == MODE.PROLOGUE or game_mode == MODE.ENDING:
+			$non_interactive/texts/description_color/continue.visible = true
+		else:
+			$non_interactive/texts/description_color/continue.visible = false
+		
 		if mental <= 0:
 			mental = 0
-		if demon_spawn <= 23:
-			demon_spawn = 23
+		if demon_spawn <= 13:
+			demon_spawn = 13
 		if demon_strength_attack >= 23:
 			demon_strength_attack = 23
 		if demon_strength_health >= 23:
@@ -224,7 +229,7 @@ func display_state(dis_state):
 		
 	if location == LOCATION.CENTER and game_mode == MODE.GAME:
 		var demon_chance = 23
-		if minutes > Global.default_minutes:
+		if minutes > Global.default_minutes and no_more_battle == false:
 			demon_chance = floor(rand_range(0,demon_spawn))
 		#print(demon_chance) # debugging purpose
 		if order.size() == 1:
@@ -238,7 +243,9 @@ func display_state(dis_state):
 				mental -= 5
 				demon_spawn -= 2
 				# I dropped the hint there.
-				des_text.text += "You got the wrong sequence, and you felt nauseous in the end. You realized you need to go RIGHT first and FRONT last. Try again."
+				if CorrectOrder.diff_mode == 0:
+					des_text.text += "You got the wrong sequence, and you felt nauseous in the end. You realized you need to go RIGHT first and FRONT last. Try again."
+				
 				if goals.size() >= 2:
 					remove_goal()
 				add_goal("Figure out the correct sequence.")
@@ -258,6 +265,7 @@ func display_state(dis_state):
 				des_text.text += "Oh no! A wild demon appears!"
 				battle_stage(true,true)
 			else:
+				no_more_battle = false
 				make_decision(dis_state)
 	else:
 		if physical <= 0:
@@ -327,6 +335,7 @@ func battle_stage(swi,player_status):
 				des_text.text += "You win the battle between demon!"
 				$demon.reset()
 				game_mode = MODE.GAME
+				no_more_battle = true
 				music_selection()
 				process_state(state)
 	pass
